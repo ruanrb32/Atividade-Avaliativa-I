@@ -4,7 +4,7 @@ from _typeshed import Self
 from msilib.schema import SelfReg
 
 
-class Agente_Aspirador_Po:
+class AGENTE_ASPIRADOR_DE_PO:
 
     def __init__ (self):
 
@@ -42,6 +42,15 @@ class Agente_Aspirador_Po:
             print(f"Aspirou a sujeira em  {Self.localizacao}" )
 
 
+    def VOLTAR_PARA_CASA(self):
+        
+        self.localizacao = 'A'
+        self.capacidade_bolsa = 10
+        self.energia_aspirador -=1
+        
+        print(" Retornou para cara e esvaziou a sujeira da bolsa")
+
+
     def OBJ_ALCANCADO(sef):
 
         return not any(sef.sujeira.values()) and sef.capacidade_bolsa == 10
@@ -52,6 +61,11 @@ class Agente_Aspirador_Po:
             print(f"Energia esgotada, o aspirador de pó não pode mais continuar!!! ")
 
             return
+        
+        if self.sujeira[self.localizacao]:
+            self.ASPIRAR_SUJEIRAS()
+
+            
                
 
 
