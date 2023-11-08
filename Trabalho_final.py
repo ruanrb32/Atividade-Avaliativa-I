@@ -42,5 +42,18 @@ class Agente_Aspirador_Po:
             print(f"Aspirou a sujeira em  {Self.localizacao}" )
 
 
+    def OBJ_ALCANCADO(sef):
+
+        return not any(sef.sujeira.values()) and sef.capacidade_bolsa == 10
+
+    def TOMAR_ACAO(self):
+
+        if self.energia_aspirador <= 0:
+            print(f"Energia esgotada, o aspirador de pó não pode mais continuar!!! ")
+
+            return
+               
+
+
 
 
