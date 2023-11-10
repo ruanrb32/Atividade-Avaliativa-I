@@ -4,6 +4,7 @@ from _typeshed import Self
 from msilib.schema import SelfReg
 
 
+
 class AGENTE_ASPIRADOR_DE_PO:
 
     def __init__ (self):
@@ -28,9 +29,9 @@ class AGENTE_ASPIRADOR_DE_PO:
             self.localizacao = chr(new_localizacao)
             self.energia_aspirador -=1
 
-            print(f" Movimentado para {self.localizacao }" )
+            print(f" Movimentado para {self.localizacao }" )    
 
-    
+
     def ASPIRAR_SUJEIRAS (self):
 
         if Self.sujeira[self.localizacao]:
@@ -48,16 +49,21 @@ class AGENTE_ASPIRADOR_DE_PO:
         self.capacidade_bolsa = 10
         self.energia_aspirador -=1
         
-        print(" Retornou para cara e esvaziou a sujeira da bolsa")
+        print(" Retornou para cara e esvaziou a sujeira da bolsa")        
 
 
+    
     def OBJ_ALCANCADO(sef):
 
         return not any(sef.sujeira.values()) and sef.capacidade_bolsa == 10
 
+
+
+
     def TOMAR_ACAO(self):
 
         if self.energia_aspirador <= 0:
+
             print(f"Energia esgotada, o aspirador de pó não pode mais continuar!!! ")
 
             return
@@ -65,9 +71,29 @@ class AGENTE_ASPIRADOR_DE_PO:
         if self.sujeira[self.localizacao]:
             self.ASPIRAR_SUJEIRAS()
 
-            
-               
+        else:
 
+            direcoes_disponiveis = []
 
+            if self.localizacao != 'A':
+                direcoes_disponiveis.append('NORTE')
 
+            if self.localizacao !=  'P':
+                    direcoes_disponiveis.append('SUL')
 
+            if self.localizacao != 'D' and self.localizacao != 'H' and self.localizacao != 'L':
+                        direcoes_disponiveis.append('LESTE')
+                        
+            if self.localizacao !='A' and self.localizacao != 'E' and self.localizacao != 'I':   
+                            direcoes_disponiveis.append('OESTE')
+
+            if direcoes_disponiveis:
+                                direcao=direcoes_disponiveis[0]
+                                self.MOVER(direcao)
+
+            else: 
+                  self.VOLTAR_PARA_CASA()
+
+        if self.OBJ_ALCANCADO():
+
+            print("Objetivo alcançado com sucesso, o ambiente está limpo e o agente retornou para casa!!!")               
